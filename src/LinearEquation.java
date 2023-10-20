@@ -10,8 +10,7 @@ public class LinearEquation {
         this.y2 = y2;
     }
     private double roundedToHundredth(double toRound) {
-        double x = 1.276558;
-        return Math.round(x * 100) / 100.0;
+        return Math.round(toRound * 100) / 100.0;
     }
     public double distance() {
         return roundedToHundredth(Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));
@@ -23,9 +22,22 @@ public class LinearEquation {
         return roundedToHundredth(y1 - slope() * x1);
     }
     public String equation() {
-        return "y = " + slope() + "x " +
+        String sign = " + ";
+        String mx = (y2-y1) + "/" + (x2-x1) + "x" + sign;
+        if (yIntercept() < 0) {
+            sign = " - ";
+        }
+        return "y = " + mx + Math.abs(yIntercept());
+    }
+    public String coordinateForX(double x) {
+        double y = slope() * x + yIntercept();
+        return "(" + x + ", " + y + ")";
     }
     public String lineInfo() {
-        return
+        return "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")" +
+                "\nThe equation of the line between these points is: " + equation() +
+                "\nThe slope of this line is: " + slope() +
+                "\nThe y-intercept of this line is: " + yIntercept() +
+                "\nThe distance between these points is " + distance();
     }
 }
