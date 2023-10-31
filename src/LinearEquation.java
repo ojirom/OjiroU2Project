@@ -23,9 +23,12 @@ public class LinearEquation {
     }
     public String equation() {
         String sign = " + ";
-        String mx = (y2-y1) + "/" + (x2-x1) + "x" + sign;
         if (yIntercept() < 0) {
             sign = " - ";
+        }
+        String mx = (y2-y1) + "/" + (x2-x1) + "x" + sign;
+        if (y2-y1 == 0 || x2-x1 == 0) {
+            mx = "";
         }
         return "y = " + mx + Math.abs(yIntercept());
     }
